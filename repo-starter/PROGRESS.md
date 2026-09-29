@@ -1,19 +1,19 @@
 # Progress and next-session handoff
 
+Keep this page short. Update the current state and phase index; put child-slice history and evidence in the owning component's `docs/phases/P-XX.md`.
+
 ## Current state
 
-- **Phase:** `P-00.1` product framing.
+- **Slice:** `P-00.1` product framing.
 - **Status:** proposed; no implementation or verification has occurred in this starter.
 - **Last observed result:** repository starter files only.
-- **Next action:** read the user's idea, resolve the decisions that affect the first vertical slice, then update `PLAN.md`. A clear implementation request can proceed within its stated scope.
+- **Next action:** read the user's idea, resolve decisions that affect the first vertical slice, then update `PLAN.md`. A clear implementation request can proceed within its stated scope.
 - **Known blockers:** none recorded; project requirements have not been provided.
 
-## Decision log
+## Phase index
 
-| Date | Phase | Decision and reason | Evidence or reference |
-|---|---|---|---|
-| — | — | No project decision recorded yet. | — |
+| Phase | Status and outcome | Report |
+|---|---|---|
+| P-00 | Proposed; no work completed yet. | — |
 
-## Handoff entry format
-
-For each material slice, record the phase ID, state transition, changed paths or commit, owner decision, observed verification level, unresolved risk, and next action. Keep entries short. If this file grows large, summarize closed history and link to ADRs, issues, or commits; preserve decisions that affect future work.
+For each completed child slice, update its phase report with ID, delivered behavior, changed code/commit, exact command and environment, observed result, decisions, and remaining work. When a parent phase closes, keep one summary row and a link here. Move unique information before shortening this page; never replace evidence with an unsupported summary.

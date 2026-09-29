@@ -1,8 +1,10 @@
 # Product feature map
 
-No user-facing feature exists yet. Add a row after the first runnable vertical slice; do not invent screens, routes, selectors, or commands from a plan. Keep the map from the user's point of view so an agent can find and verify a reported problem.
+This map belongs to this repository and describes its user journeys. An agent may draft planned journeys from agreed product goals and discover implemented paths from code, routes, UI, and tests. Validate the actual path and observable result before marking it verified; do not invent screens, routes, selectors, or commands.
 
-| User journey | Entry point and action | Owning code | Observable proof | Gotchas |
-|---|---|---|---|---|
+| User journey | Status | Entry point and action | Owning code | Observable proof | Detail |
+|---|---|---|---|---|---|
 
-For a web app, name navigation path and stable selectors. For an API, name method/path, authentication, and visible response. For a CLI, name the command and files/output it changes. For background work, include how the user starts it and sees completion. Update the affected row whenever an entry point, owning module, or proof path changes.
+Status is `planned`, `implemented`, or `verified`. A new empty repo has no implemented or verified row; add planned rows only after the product idea is known. For a web app, record navigation and stable selectors; for an API, method/path and authentication; for a CLI, command and changed output; for background work, how the user starts it and sees completion.
+
+Keep this file a short index. When steps, edge cases, or proof become long, put them in `backend/docs/features/<feature>.md` or `frontend/docs/features/<feature>.md` according to the owning surface and link the detail column. Update affected rows and detail when entry points, code ownership, or proof paths change.

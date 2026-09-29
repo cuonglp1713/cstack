@@ -1,6 +1,6 @@
 # Current plan
 
-This is a seed for a new repository. Keep only the current proposed or authorized slice here; record completed outcomes briefly in `PROGRESS.md`.
+This is a seed for a new repository. Keep only the current proposed or authorized slice here. Before replacing a completed slice, put its outcome and evidence in the owning `backend/docs/phases/P-XX.md` or `frontend/docs/phases/P-XX.md`, then leave a short pointer in `PROGRESS.md`.
 
 ## P-00.1 — Define the first vertical slice
 

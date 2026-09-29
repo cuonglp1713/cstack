@@ -1,6 +1,6 @@
-# Verification guide and evidence
+# Verification guide
 
-No application exists yet, so no check is marked passed. Replace the first section with real commands after the first runnable slice. Use `FEATURE_MAP.md` to find the user-facing path to exercise.
+No application exists yet, so no check is marked passed. Replace command placeholders after the first runnable slice. Use `FEATURE_MAP.md` to find the user-facing path to exercise.
 
 ## Verification approach
 
@@ -9,21 +9,17 @@ No application exists yet, so no check is marked passed. Replace the first secti
 3. Run broader checks for a concrete cross-boundary risk or project gate. Keep skipped and blocked checks explicit.
 4. Review the diff and record exact commands/results. Never substitute a fake test for live acceptance.
 
-## Commands
+## Reusable commands
 
 - Build/start: not established yet.
 - Focused test: not established yet.
 - Full test/quality gate: not established yet.
 - External acceptance: not established yet; use an explicitly named target and safe test data when added.
 
-## Evidence entry format
+## Latest relevant proof
 
-```text
-Phase and behavior:
-Date and branch/commit:
-Environment:
-Action and exact command:
-Observed result and side effect:
-Pass / fail / skipped:
-Limitation or follow-up:
-```
+- **Slice:** `P-00.1`.
+- **Result:** not run; no application exists.
+- **Detailed evidence:** no phase report yet.
+
+Keep only the current or latest relevant proof summary here. In the owning `backend/docs/phases/P-XX.md` or `frontend/docs/phases/P-XX.md`, record the child ID, date and branch/commit, environment, exact command/action, observed result and side effect, pass/fail/skip, and limitation. Link that report above. Do not paste large logs or secrets.
