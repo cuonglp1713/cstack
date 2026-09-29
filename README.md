@@ -51,13 +51,13 @@ Dù cài skill dùng chung, vẫn sao chép `repo-starter/.` vào từng repo m�
 
 Mở agent tại root repo. Codex tự đọc `AGENTS.md` và khám phá metadata skill; nó đọc PLAN, PROGRESS, VERIFY và FEATURE_MAP theo chỉ dẫn hoặc nhu cầu của tác vụ.
 
-> Đây là repo mới. Ý tưởng là ... cho người dùng ... Hãy đọc AGENTS.md, dùng grill-feature để làm rõ các quyết định quan trọng, rồi cập nhật PLAN.md cho phase đầu. Chỉ hỏi những gì không suy ra được từ yêu cầu hoặc repo.
+> Đây là repo mới. Ý tưởng là ... cho người dùng ... Hãy làm rõ các quyết định quan trọng, rồi cập nhật PLAN.md cho phase đầu. Chỉ hỏi những gì không suy ra được từ yêu cầu hoặc repo.
 
-Khi slice đã rõ:
+`P-00.1` trong starter là bước xác định vertical slice đầu tiên, chưa phải phần triển khai code. Khi `PLAN.md` đã có một slice triển khai đủ rõ và bạn muốn bắt đầu (ví dụ `P-01.1`):
 
-> Hãy triển khai P-00.1 theo PLAN.md, kiểm chứng hành vi, cập nhật PROGRESS.md và VERIFY.md. Nếu đã có luồng người dùng/API, cập nhật FEATURE_MAP.md.
+> Hãy triển khai P-01.1 theo PLAN.md, kiểm chứng hành vi, cập nhật PROGRESS.md và VERIFY.md. Nếu luồng người dùng/API thay đổi, cập nhật FEATURE_MAP.md.
 
-Có thể gọi trực tiếp `$grill-feature`, `$run-phase`, `$verify-backend`, `$handoff-phase`. Nếu vừa cài skill mà nó chưa hiện, mở session Codex mới.
+Các prompt mẫu không cần nhắc tên skill: Codex có thể chọn skill phù hợp từ mô tả và chỉ dẫn trong `AGENTS.md`. Nếu muốn chỉ định workflow cho một yêu cầu, thêm `$grill-feature`, `$run-phase`, `$verify-backend` hoặc `$handoff-phase` vào prompt. Đây là cách chọn hướng dẫn trong `SKILL.md`, không phải lệnh terminal hay MCP tool. Nếu vừa cài skill mà nó chưa hiện, mở session Codex mới.
 
 ## Ghi đè theo repo
 
