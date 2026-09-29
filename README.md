@@ -91,3 +91,7 @@ Xem [`examples/mysql-project/AGENTS.md`](examples/mysql-project/AGENTS.md) cho v
 | `SKILL.md` | Workflow lặp lại cần thay đổi. |
 
 `FEATURE_MAP.md` riêng cho từng repo. Agent có thể phác luồng `planned` từ ý tưởng đã chốt, tìm đường đi trong code/UI/routes/tests, rồi kiểm chứng trước khi ghi `verified`. Khi bản đồ dài, giữ nó làm mục lục và liên kết tới file chi tiết trong component sở hữu. Với phase liên quan cả backend lẫn frontend, chọn một báo cáo chính và liên kết tới đó. Trước khi rút ngắn file gốc, chuyển mọi thông tin duy nhất vào báo cáo hoặc ADR và để lại con trỏ. Không ghi `passed` nếu chưa chạy kiểm chứng.
+
+## Nguồn cảm hứng
+
+Bộ kit này học hỏi từ [grill-me của Matt Pocock](https://www.aihero.dev/skills-grill-me) ([mã nguồn](https://github.com/mattpocock/skills)) và [chia sẻ của Lauren Tan về coding agents](https://www.youtube.com/watch?v=EWSUvEyFwjc), cùng [pstack của Lauren Tan](https://github.com/cursor/plugins/tree/main/pstack). Các quy ước và skill trong repo đã được điều chỉnh cho workflow của bộ kit này.
