@@ -15,6 +15,6 @@ No check has been recorded in this template. This does not describe the reposito
 - **Environment and command:** not recorded here yet.
 - **Observed result and side effect:** not recorded here yet.
 - **Limitations:** not assessed here yet.
-- **Detailed evidence:** follow the repo's existing report location when available.
+- **Detailed evidence:** use `.cstack/docs/phases/` when a personal report is warranted.
 
 For each new task, run the smallest check that demonstrates changed behavior and relevant side effects. Distinguish inspected pre-existing evidence from checks run during the current work. Record failures and skipped checks explicitly; never infer a pass from the presence of a test file or CI workflow.

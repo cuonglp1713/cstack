@@ -1,6 +1,6 @@
 # Verification guide
 
-No application exists yet, so no check is marked passed. Replace command placeholders after the first runnable slice. Use `FEATURE_MAP.md` to find the user-facing path to exercise.
+No application exists yet, so no check is marked passed. Replace command placeholders after the first runnable slice. Use `.cstack/FEATURE_MAP.md` to find the user-facing path to exercise.
 
 ## Verification approach
 
@@ -22,4 +22,4 @@ No application exists yet, so no check is marked passed. Replace command placeho
 - **Result:** not run; no application exists.
 - **Detailed evidence:** no phase report yet.
 
-Keep only the current or latest relevant proof summary here. In the owning `backend/docs/phases/P-XX.md` or `frontend/docs/phases/P-XX.md`, record the child ID, date and branch/commit, environment, exact command/action, observed result and side effect, pass/fail/skip, and limitation. Link that report above. Do not paste large logs or secrets.
+Keep only the current or latest relevant proof summary here. In `.cstack/docs/phases/P-XX.md`, record the child ID, date and branch/commit, environment, exact command/action, observed result and side effect, pass/fail/skip, and limitation. Link that report above. Do not paste large logs or secrets.

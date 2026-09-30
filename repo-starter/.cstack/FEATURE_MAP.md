@@ -7,4 +7,4 @@ This map belongs to this repository and describes its user journeys. An agent ma
 
 Status is `planned`, `implemented`, or `verified`. A new empty repo has no implemented or verified row; add planned rows only after the product idea is known. For a web app, record navigation and stable selectors; for an API, method/path and authentication; for a CLI, command and changed output; for background work, how the user starts it and sees completion.
 
-Keep this file a short index. When steps, edge cases, or proof become long, put them in `backend/docs/features/<feature>.md` or `frontend/docs/features/<feature>.md` according to the owning surface and link the detail column. Update affected rows and detail when entry points, code ownership, or proof paths change.
+Keep this file a short index. When steps, edge cases, or proof become long, put them in `.cstack/docs/features/<feature>.md` and link the detail column. Update affected rows and detail when entry points, code ownership, or proof paths change.

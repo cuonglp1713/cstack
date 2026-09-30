@@ -16,4 +16,4 @@ This is a starting index for work tracked after adoption. Its empty state says n
 | Work item | Outcome and status | Detail |
 |---|---|---|
 
-Add rows for work tracked from adoption onward. Follow the repo's existing report location and ID scheme when present. Keep detailed verification and decisions in the relevant report or project document, not in this index.
+Add rows for work tracked from adoption onward. Follow the repo's existing ID scheme when present. Keep detailed personal verification and decisions in `.cstack/docs/` when warranted, not in this index. Record team-relevant outcomes in shared project artifacts.

@@ -1,13 +1,13 @@
 # Progress and next-session handoff
 
-Keep this page short. Update the current state and phase index; put child-slice history and evidence in the owning component's `docs/phases/P-XX.md`.
+Keep this page short. Update the current state and phase index; put child-slice history and evidence in `.cstack/docs/phases/P-XX.md`.
 
 ## Current state
 
 - **Slice:** `P-00.1` product framing.
 - **Status:** proposed; no implementation or verification has occurred in this starter.
 - **Last observed result:** repository starter files only.
-- **Next action:** read the user's idea, resolve decisions that affect the first vertical slice, then update `PLAN.md`. A clear implementation request can proceed within its stated scope.
+- **Next action:** read the user's idea, resolve decisions that affect the first vertical slice, then update `.cstack/PLAN.md`. A clear implementation request can proceed within its stated scope.
 - **Known blockers:** none recorded; project requirements have not been provided.
 
 ## Phase index

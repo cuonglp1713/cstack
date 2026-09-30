@@ -14,4 +14,4 @@ This file tracks work from the kit's adoption onward. Existing features and hist
 - **Verification plan:** use the repo's actual commands and a relevant behavior check.
 - **Data, rollout, or migration risk:** not assessed yet.
 
-Keep only the current slice here. Preserve completed outcomes and evidence in the repository's established documentation location before replacing this section. Do not backfill historical phases merely to adopt the kit.
+Keep only the current slice here. Preserve completed personal outcomes and evidence in `.cstack/docs/phases/` when warranted before replacing this section. Do not backfill historical phases merely to adopt the kit.
