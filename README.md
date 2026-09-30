@@ -10,12 +10,14 @@ cstack/
 ├── skills/*/SKILL.md                Bốn workflow dùng lại
 ├── repo-starter/
 │   ├── .cstack/{CONTEXT,PLAN,PROGRESS,VERIFY,FEATURE_MAP}.md
-│   ├── .cstack/docs/{phases,features,adr}/
+│   ├── .cstack/docs/{features,adr}/
 │   └── backend/, docker/, frontend/  Khung ứng dụng chỉ cho repo mới
 ├── repo-adopt/.cstack/              Chỉ có năm file Markdown cá nhân;
 │                                    không tạo thư mục ứng dụng
 └── examples/mysql-project/.cstack/CONTEXT.md
 ```
+
+Hai template **không có sẵn** thư mục `specs/`. Agent chỉ tạo `.cstack/specs/<id>-<slug>/` trong repo đích khi đã xác định một thay đổi cụ thể cần theo dõi. `<slug>` lấy từ tên công việc và quy ước của chính dự án; kit không ấn định một tên feature mẫu.
 
 ## Cài đặt chỉ dẫn và skill cá nhân
 
@@ -66,7 +68,7 @@ TARGET_REPO=/path/to/existing-repo
 cp -a --update=none "$KIT/repo-adopt/." "$TARGET_REPO/"
 ```
 
-`repo-adopt/` chỉ thêm năm file Markdown dưới `.cstack/`, không tạo `backend/`, `frontend/` hay `docker/`. Trước khi dùng, đối chiếu với chỉ dẫn, tài liệu, lệnh chạy/test và cấu trúc đã có trong repo đích. Không kiểm kê mọi feature hay dựng lại lịch sử phase trước khi làm yêu cầu hiện tại.
+`repo-adopt/` chỉ thêm năm file Markdown dưới `.cstack/`, không tạo `backend/`, `frontend/` hay `docker/`. Trước khi dùng, đối chiếu với chỉ dẫn, tài liệu, lệnh chạy/test và cấu trúc đã có trong repo đích. Không kiểm kê mọi feature hay dựng lại lịch sử cũ trước khi làm yêu cầu hiện tại.
 
 Sau khi sao chép, kiểm tra Git đang bỏ qua file cá nhân và các file dự án khác vẫn hiện bình thường:
 
@@ -77,25 +79,40 @@ git -C "$TARGET_REPO" status --short
 
 Các bản `.cstack/` bị bỏ qua sẽ không theo bạn sang bản clone hoặc máy khác; sao lưu riêng nếu muốn giữ chúng lâu dài. Các thay đổi code, test, contract và quyết định mà nhóm cần biết vẫn phải đi qua tài liệu hoặc quy trình chung của dự án.
 
+## Quy trình spec
+
+Một **spec** là hồ sơ cho một thay đổi có phạm vi và tiêu chí chấp nhận rõ ràng. Dùng spec cho công việc đáng theo dõi qua nhiều bước hoặc phiên làm việc; sửa lỗi nhỏ có thể làm trực tiếp. Chỉ có một spec đang hoạt động. Một yêu cầu triển khai đã rõ phạm vi cho phép bắt đầu ngay; không cần đợi một nghi thức tạo tài liệu.
+
+Khi cần hồ sơ, agent tạo `.cstack/specs/<id>-<slug>/` theo hướng dẫn trong `global/AGENTS.md` và `.cstack/CONTEXT.md`. ID tăng dần như `001`, `002`, trừ khi dự án có quy ước ID sẵn. Tên `<slug>` được chọn từ đầu việc thật của repo đó và có thể theo convention đang dùng. Không tạo `specs/` lúc copy template, không đặt tên trước cho công việc chưa có, và không gán spec hồi tố cho toàn bộ feature đã tồn tại.
+
+| File trong spec | Nội dung |
+|---|---|
+| `spec.md` | Kết quả người dùng cần, phạm vi, quyết định, tiêu chí chấp nhận. Với repo đã có code, ghi baseline liên quan và phần việc còn lại. |
+| `plan.md` | Cách triển khai, rủi ro, cách kiểm chứng. |
+| `tasks.md` | Các bước thực hiện và trạng thái; dùng ID cục bộ như `T01` khi hữu ích. |
+| `result.md` | Hành vi đã triển khai, code/commit, lệnh và môi trường kiểm chứng, kết quả quan sát, giới hạn và việc còn lại. |
+
+Tạo các file trên khi thông tin tương ứng đã có; không điền nội dung giả định chỉ để đủ bộ. Khi hoàn tất, giữ hồ sơ đó như lịch sử. Thay đổi sau này có spec mới và liên kết về spec cũ. `.cstack/PLAN.md` trỏ tới công việc đang làm; `PROGRESS.md` có chỉ mục spec đã hoàn tất; `VERIFY.md` liên kết bằng chứng mới nhất trong `result.md`. Chúng không chép lại toàn bộ hồ sơ.
+
 ## Bắt đầu làm việc trong repo mới
 
-Mở agent tại root repo sau khi cài chỉ dẫn cá nhân. Global `AGENTS.md` chỉ agent tìm `.cstack/CONTEXT.md`; các living docs được đọc theo nhu cầu của tác vụ.
+Mở agent tại root repo sau khi cài chỉ dẫn cá nhân. Global `AGENTS.md` chỉ agent tìm `.cstack/CONTEXT.md`; các living doc được đọc theo nhu cầu tác vụ.
 
-> Đây là repo mới. Ý tưởng là ... cho người dùng ... Hãy làm rõ các quyết định quan trọng, rồi cập nhật `.cstack/PLAN.md` cho phase đầu. Chỉ hỏi những gì không suy ra được từ yêu cầu hoặc repo.
+> Đây là repo mới. Ý tưởng là ... cho người dùng ... Hãy làm rõ các quyết định quan trọng và xác định thay đổi đầu tiên với tiêu chí chấp nhận quan sát được. Khi phạm vi đã rõ, lập spec cho thay đổi đó và cập nhật `.cstack/PLAN.md`.
 
-`P-00.1` trong starter là bước xác định vertical slice đầu tiên, chưa phải phần triển khai code. Khi `.cstack/PLAN.md` đã có một slice triển khai đủ rõ và bạn muốn bắt đầu (ví dụ `P-01.1`):
+Khi spec đã đủ rõ để triển khai:
 
-> Hãy triển khai P-01.1 theo `.cstack/PLAN.md`, kiểm chứng hành vi, cập nhật `.cstack/PROGRESS.md` và `.cstack/VERIFY.md`. Nếu luồng người dùng/API thay đổi, cập nhật `.cstack/FEATURE_MAP.md`.
+> Hãy triển khai spec đang hoạt động theo `.cstack/PLAN.md`, kiểm chứng hành vi, cập nhật `result.md` cùng `.cstack/PROGRESS.md` và `.cstack/VERIFY.md`. Nếu luồng người dùng/API thay đổi, cập nhật `.cstack/FEATURE_MAP.md`.
 
-Các prompt mẫu không cần nhắc tên skill: Codex có thể chọn skill phù hợp từ mô tả và chỉ dẫn đã nạp. Nếu muốn chỉ định workflow cho một yêu cầu, thêm `$grill-feature`, `$run-phase`, `$verify-backend` hoặc `$handoff-phase` vào prompt. Đây là cách chọn hướng dẫn trong `SKILL.md`, không phải lệnh terminal hay MCP tool. Nếu vừa cài skill mà nó chưa hiện, mở session Codex mới.
+Các prompt mẫu không cần nhắc tên skill: Codex có thể chọn skill phù hợp từ mô tả và chỉ dẫn đã nạp. Nếu muốn chỉ định workflow, thêm `$grill-feature`, `$run-spec`, `$verify-backend` hoặc `$handoff-spec` vào prompt. Đây là cách chọn hướng dẫn trong `SKILL.md`, không phải lệnh terminal hay MCP tool. Nếu vừa cài skill mà nó chưa hiện, mở session Codex mới.
 
 ## Tiếp tục làm việc trong repo đã có code
 
-Mở agent tại root repo đích. Đưa yêu cầu hiện tại trực tiếp; agent đọc chỉ dẫn của dự án, `.cstack/CONTEXT.md`, code/test/tài liệu liên quan, rồi tiếp tục công việc theo cấu trúc có sẵn. Các file trong `repo-adopt/.cstack/` không khẳng định repo chưa có ứng dụng hay feature nào.
+Mở agent tại root repo đích. Đưa yêu cầu hiện tại trực tiếp; agent đọc chỉ dẫn dự án, `.cstack/CONTEXT.md`, code/test/tài liệu liên quan, rồi tiếp tục theo cấu trúc có sẵn. Các file trong `repo-adopt/.cstack/` không khẳng định repo chưa có ứng dụng hay feature nào.
 
-> Repo này đã có code. Hãy tiếp tục feature X theo kiến trúc và quy ước hiện tại. Kiểm tra luồng liên quan và các thay đổi dở dang, xác định kết quả quan sát được, triển khai và kiểm chứng trong phạm vi feature X. Cập nhật tài liệu kit dựa trên điều thực sự quan sát; không kiểm kê toàn repo trước khi bắt đầu.
+> Repo này đã có code. Hãy tiếp tục feature X theo kiến trúc và quy ước hiện tại. Kiểm tra luồng liên quan và thay đổi dở dang, xác định kết quả quan sát được, triển khai và kiểm chứng trong phạm vi feature X. Nếu cần hồ sơ cho công việc này, hãy tạo spec với tên phù hợp dự án. Cập nhật tài liệu kit dựa trên điều thực sự quan sát; không kiểm kê toàn repo trước khi bắt đầu.
 
-Nếu việc dùng kit bắt đầu giữa chừng một feature, `.cstack/PLAN.md` ghi phần việc còn lại; PROGRESS nêu trạng thái hiện tại và bước tiếp theo. VERIFY chỉ ghi kết quả vừa được quan sát. FEATURE_MAP có thể chỉ bao phủ các luồng đã chạm tới; feature chưa khảo sát không cần được suy đoán hoặc liệt kê. Dùng ID mới cho công việc từ lúc tiếp nhận, hoặc theo quy ước ID của repo; không gán ID hồi tố cho lịch sử cũ.
+Nếu kit được dùng giữa chừng một feature, `.cstack/PLAN.md` ghi phần việc còn lại; `PROGRESS.md` nêu trạng thái hiện tại và bước tiếp theo. `VERIFY.md` chỉ ghi kết quả vừa được quan sát. `FEATURE_MAP.md` có thể chỉ bao phủ các luồng đã chạm tới; feature chưa khảo sát không cần được suy đoán hoặc liệt kê. Chọn ID cho công việc từ lúc tiếp nhận hoặc theo quy ước dự án; không gán ID hồi tố cho lịch sử cũ.
 
 ## Ghi đè theo repo
 
@@ -109,28 +126,28 @@ Mặc định trong `global/AGENTS.md` chỉ áp dụng khi repo chưa chọn kh
 - Do not introduce PostgreSQL-only SQL, extensions, or deployment configuration.
 ```
 
-Xem [`examples/mysql-project/.cstack/CONTEXT.md`](examples/mysql-project/.cstack/CONTEXT.md) cho ví dụ đầy đủ của repo mới. Với repo có sẵn, quyết định, lệnh và layout đang dùng được ưu tiên; không tạo `backend/`, `frontend/` hoặc `docker/` chỉ để khớp starter. Nếu một skill có giả định không hợp với repo, chỉnh bản skill cá nhân hoặc tạo skill khác tên. Bốn skill trong bộ này không khóa loại database.
+Xem [ví dụ MySQL](examples/mysql-project/.cstack/CONTEXT.md) cho một repo mới. Với repo có sẵn, quyết định, lệnh và layout đang dùng được ưu tiên; không tạo `backend/`, `frontend/` hoặc `docker/` chỉ để khớp starter. Nếu một skill có giả định không hợp với repo, chỉnh bản skill cá nhân hoặc tạo skill khác tên. Bốn skill trong bộ này không khóa loại database.
 
 `AGENTS.md` có sẵn ở repo đích tiếp tục là chỉ dẫn của dự án. Không thay nó bằng ghi chú cá nhân.
 
 ## Vòng đời tài liệu
 
-Bảng dưới mô tả các file cá nhân trong `.cstack/` của repo đích. Chúng là tài liệu làm việc bị Git bỏ qua. Tài liệu chính thức của dự án giữ tên và vị trí hiện hữu.
+Các file `.cstack/` ở repo đích là tài liệu làm việc cá nhân bị Git bỏ qua. Tài liệu chính thức của dự án giữ tên và vị trí hiện hữu.
 
 | File | Cập nhật khi |
 |---|---|
 | `global/AGENTS.md` | Mặc định dùng chung thay đổi. |
-| `.cstack/CONTEXT.md` | Ghi nhận bối cảnh và quyết định cá nhân đã được xác nhận. |
-| `.cstack/PLAN.md` | Chốt hoặc đổi slice hiện tại; giữ lại kết quả và bằng chứng cũ trước khi thay nội dung. |
-| `.cstack/PROGRESS.md` | Trạng thái, blocker, bước tiếp theo hoặc con trỏ báo cáo thay đổi; không dùng làm nhật ký toàn bộ lịch sử. |
-| `.cstack/VERIFY.md` | Lệnh dùng lại hoặc kết quả gần nhất thay đổi; bằng chứng chi tiết nằm trong báo cáo khi cần. |
+| `.cstack/CONTEXT.md` | Bối cảnh và quyết định cá nhân đã xác nhận thay đổi. |
+| `.cstack/PLAN.md` | Spec đang làm, phạm vi ngắn và bước tiếp theo thay đổi. |
+| `.cstack/PROGRESS.md` | Trạng thái, blocker, bước tiếp theo hoặc chỉ mục spec đã xong thay đổi. |
+| `.cstack/VERIFY.md` | Lệnh dùng lại hoặc kết quả gần nhất thay đổi; liên kết `result.md` cho bằng chứng chi tiết. |
 | `.cstack/FEATURE_MAP.md` | Hành trình sản phẩm, trạng thái, đường vào hoặc cách kiểm chứng thay đổi. |
-| `.cstack/docs/phases/` | Một child slice xong hoặc parent phase đóng: lưu kết quả, code/commit, lệnh và môi trường kiểm chứng, kết quả quan sát, việc còn lại. |
-| `.cstack/docs/features/` | Chi tiết một hành trình dài hơn mức phù hợp cho chỉ mục `FEATURE_MAP.md`. |
+| `.cstack/specs/<id>-<slug>/` | Tạo theo nhu cầu cho thay đổi thật; cập nhật `spec.md`, `plan.md`, `tasks.md`, `result.md` trong quá trình làm. |
+| `.cstack/docs/features/` | Chi tiết hành trình dài hơn mức phù hợp cho chỉ mục feature. |
 | `.cstack/docs/adr/` | Ghi chú cá nhân về quyết định kiến trúc lâu dài hoặc quyết định cũ bị thay thế. |
 | `SKILL.md` | Workflow lặp lại cần thay đổi. |
 
-`.cstack/FEATURE_MAP.md` riêng cho từng repo. Với repo mới, agent có thể phác luồng `planned` từ ý tưởng đã chốt; với repo có sẵn, chỉ ghi các luồng đã khảo sát và tách trạng thái triển khai khỏi bằng chứng kiểm chứng. Khi bản đồ dài, giữ nó làm mục lục và liên kết tới `.cstack/docs/features/`. Với phase liên quan nhiều thành phần, chọn một báo cáo chính. Trước khi rút ngắn living doc, chuyển mọi thông tin duy nhất vào báo cáo hoặc ghi chú quyết định và để lại con trỏ. Không ghi `passed` nếu chưa chạy kiểm chứng.
+Với repo mới, agent có thể phác luồng `planned` từ ý tưởng đã chốt; với repo có sẵn, chỉ ghi luồng đã khảo sát và tách trạng thái triển khai khỏi bằng chứng kiểm chứng. Khi bản đồ dài, giữ nó làm mục lục và liên kết tới `.cstack/docs/features/`. Trước khi rút ngắn living doc, chuyển thông tin duy nhất vào spec hoặc ghi chú quyết định và để lại con trỏ. Không ghi `passed` nếu chưa chạy kiểm chứng.
 
 ## Nguồn cảm hứng
 

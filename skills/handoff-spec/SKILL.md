@@ -1,0 +1,13 @@
+---
+name: handoff-spec
+description: Leave a concise cross-session record after work on a spec, focused fix, decision, or verification in a repo. Use for material state changes, not routine status reads.
+---
+
+# Leave the next session a reliable starting point
+
+1. Check current branch, Git status/HEAD, changed source, relevant tests, and `.cstack/PLAN.md`, `.cstack/PROGRESS.md`, and `.cstack/VERIFY.md` when the private kit is present. Read the active spec if one exists. Otherwise use the repo's handoff documents. Distinguish committed behavior from uncommitted work and ignored files. In an adopted repo, empty kit templates do not describe product history.
+2. For tracked substantial work, update the active `.cstack/specs/<id>-<slug>/result.md` with implemented behavior, changed code/commit, exact verification command and environment, observed result and side effect, limits, decisions, and remaining work. Update `tasks.md` to reflect actual progress. Do not create a retrospective spec for old features. For a focused fix without a spec, keep concise private results in the living files or follow the repo's established handoff convention.
+3. In `.cstack/PROGRESS.md`, record current status, blocker, and next action. Link the completed spec in a short work index; do not append a full event log or imply full coverage of an adopted repo. A test pass or merge does not authorize a new spec.
+4. In `.cstack/PLAN.md`, keep only the active or proposed work and a pointer to its spec. Before replacing it, ensure the completed spec contains unique decisions and results. In `.cstack/VERIFY.md`, keep reusable commands and the latest relevant proof summary; link `result.md` for exact historical evidence. Mark a spec done only when its acceptance criteria have observed evidence or the user explicitly accepts a documented limitation; otherwise leave it active or blocked. Do not paste long logs or secrets.
+5. Update affected `.cstack/FEATURE_MAP.md` rows when user journeys or proof paths change. Keep it a short repo-specific index, leave uninspected journeys unmapped, and link longer personal detail in `.cstack/docs/features/` when needed. Put lasting personal decisions in `.cstack/docs/adr/`. Record team-relevant decisions and instructions in shared project artifacts when required.
+6. Before shortening a living file, preserve every unique result, decision, and limitation in the spec result or an ADR and leave a pointer. Completed spec records are historical; later changes get a new spec linked to the earlier record. End with a self-contained summary of changed behavior, proof, remaining uncertainty, and next action.

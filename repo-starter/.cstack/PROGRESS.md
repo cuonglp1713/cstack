@@ -1,19 +1,18 @@
 # Progress and next-session handoff
 
-Keep this page short. Update the current state and phase index; put child-slice history and evidence in `.cstack/docs/phases/P-XX.md`.
+Keep this page short. The spec records hold detailed steps, implementation, and evidence.
 
 ## Current state
 
-- **Slice:** `P-00.1` product framing.
-- **Status:** proposed; no implementation or verification has occurred in this starter.
-- **Last observed result:** repository starter files only.
-- **Next action:** read the user's idea, resolve decisions that affect the first vertical slice, then update `.cstack/PLAN.md`. A clear implementation request can proceed within its stated scope.
-- **Known blockers:** none recorded; project requirements have not been provided.
+- **Active spec:** none yet.
+- **Status:** no product work has been defined in this starter.
+- **Last observed result:** none; this template is not verification evidence.
+- **Next action:** take the user's idea, define a bounded change, and update `.cstack/PLAN.md`.
+- **Known blockers:** none recorded; requirements are still unknown.
 
-## Phase index
+## Completed specs
 
-| Phase | Status and outcome | Report |
+| Spec | Outcome | Record |
 |---|---|---|
-| P-00 | Proposed; no work completed yet. | — |
 
-For each completed child slice, update its phase report with ID, delivered behavior, changed code/commit, exact command and environment, observed result, decisions, and remaining work. When a parent phase closes, keep one summary row and a link here. Move unique information before shortening this page; never replace evidence with an unsupported summary.
+Add a row only after a spec has been completed with observed evidence or an explicitly accepted limitation. Link its actual folder, not a guessed path. Preserve unique results before shortening this page; do not replace evidence with an unsupported summary.

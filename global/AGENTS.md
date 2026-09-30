@@ -7,10 +7,10 @@ If the repository root contains `.cstack/CONTEXT.md`, read it as personal projec
 ## Working style
 
 - Start from the user outcome. For an ambiguous idea, ask focused questions that change product scope or architecture; avoid asking for facts visible in the repo. Capture agreed decisions before designing a large implementation.
-- Split substantial work into reviewable phases and child slices with stable IDs such as `P-00.1`, or follow the repo's existing scheme. In an existing repo, apply IDs to current work without reconstructing old phases. Keep one active slice, explicit acceptance criteria, and a clear next action. A direct request to implement a defined slice authorizes that work; do not demand repeat permission for routine steps. Do not silently open a new, unrequested phase.
-- Prefer a runnable vertical slice with observable behavior. Run tests appropriate to the change and report exact results and limits. Keep PLAN, PROGRESS, VERIFY, and FEATURE_MAP concise when the repo uses them.
-- Preserve unrelated worktree changes. Distinguish source behavior, decisions, test evidence, and unverified assumptions. Do not claim deployment or live validation from local tests.
-- Keep the living files in `.cstack/` short when the private kit is installed. Move completed work details into `.cstack/docs/`, then keep links in the living files; do not discard unique evidence while shortening a handoff. Shared project decisions still belong in the repository's established documentation when the team needs them.
+- For substantial tracked work, use one bounded spec with a stable ID, observable acceptance criteria, and a clear next action. Keep one active spec at a time. A direct request to implement a defined change authorizes that work; do not demand repeat permission for routine steps or silently begin an unrelated spec. Small focused fixes can proceed without a spec record when no durable handoff is needed.
+- When the private kit is installed, create `.cstack/specs/<id>-<slug>/` only after a real change is scoped. Use the next stable numeric ID (such as `001`) unless the project already has an ID convention; derive the slug from that project's actual work and naming rules. Never create an empty `specs/` directory or invent a feature name in advance. Inside an active spec, use `spec.md` for outcome and acceptance, `plan.md` for approach and verification, `tasks.md` for actionable steps, and `result.md` for implementation and observed evidence. Do not assign specs retroactively to existing features.
+- Prefer a runnable vertical slice with observable behavior. Run tests appropriate to the change and report exact results and limits. Keep `PLAN`, `PROGRESS`, `VERIFY`, and `FEATURE_MAP` concise when the repo uses them. Link completed spec records from the living files before shortening them. Later changes get a new spec that links the earlier one.
+- Preserve unrelated worktree changes. Distinguish source behavior, decisions, test evidence, and unverified assumptions. Do not claim deployment or live validation from local tests. Shared project decisions belong in the repository's established documentation when the team needs them.
 
 ## Preferred stack when a project has not chosen otherwise
 
@@ -18,7 +18,7 @@ If the repository root contains `.cstack/CONTEXT.md`, read it as personal projec
 - PostgreSQL when a relational database is needed. A repo decision such as MySQL replaces this preference completely, including migration and test targets.
 - Celery with Redis for durable background work when simple in-process execution is insufficient. Object storage such as S3 only when the product needs it. Add Azure AI, Qdrant, or other providers only for a concrete capability.
 - For a FastAPI backend, prefer thin routers, typed schemas, domain-grouped services, models/DB infrastructure, and separate task/worker entry points. Follow an existing repo structure instead of rearranging it merely to match this preference.
-- For a new repo, use `backend/`, `docker/`, and `frontend/` as top-level application boundaries before adding deeper structure. Keep the kit's personal phase, feature, and decision notes in `.cstack/docs/`; follow an existing repo's source and documentation layout when it differs.
+- For a new repo, use `backend/`, `docker/`, and `frontend/` as top-level application boundaries before adding deeper structure. Keep personal specs, feature details, and decision notes inside `.cstack/`. Follow an existing repo's source and documentation layout when it differs.
 
 ## Boundaries
 
