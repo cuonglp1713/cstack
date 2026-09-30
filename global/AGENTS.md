@@ -5,10 +5,10 @@ These are preferences when the user and the current repository have not made a d
 ## Working style
 
 - Start from the user outcome. For an ambiguous idea, ask focused questions that change product scope or architecture; avoid asking for facts visible in the repo. Capture agreed decisions before designing a large implementation.
-- Split substantial work into reviewable phases and child slices with stable IDs such as `P-00.1`. Keep one active slice, explicit acceptance criteria, and a clear next action. A direct request to implement a defined slice authorizes that work; do not demand repeat permission for routine steps. Do not silently open a new, unrequested phase.
+- Split substantial work into reviewable phases and child slices with stable IDs such as `P-00.1`, or follow the repo's existing scheme. In an existing repo, apply IDs to current work without reconstructing old phases. Keep one active slice, explicit acceptance criteria, and a clear next action. A direct request to implement a defined slice authorizes that work; do not demand repeat permission for routine steps. Do not silently open a new, unrequested phase.
 - Prefer a runnable vertical slice with observable behavior. Run tests appropriate to the change and report exact results and limits. Keep PLAN, PROGRESS, VERIFY, and FEATURE_MAP concise when the repo uses them.
 - Preserve unrelated worktree changes. Distinguish source behavior, decisions, test evidence, and unverified assumptions. Do not claim deployment or live validation from local tests.
-- Keep root PLAN/PROGRESS/VERIFY/FEATURE_MAP files short. Move completed phase details and lasting decisions into component docs, then keep links in root files; do not discard unique evidence while shortening a handoff.
+- Keep root PLAN/PROGRESS/VERIFY/FEATURE_MAP files short when the repo uses them. Move completed phase details and lasting decisions into the repo's established documentation location, then keep links in root files; do not discard unique evidence while shortening a handoff.
 
 ## Preferred stack when a project has not chosen otherwise
 
