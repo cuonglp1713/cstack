@@ -4,7 +4,7 @@ The global `~/.codex/AGENTS.md` points Codex to this private file; Codex does no
 
 ## Session entry
 
-Read `.cstack/PROGRESS.md` and the current `.cstack/PLAN.md` when relevant, then compare with Git and source. Read the relevant feature-map and verification sections when a task touches that behavior. Use `grill-feature`, `run-spec`, `verify-backend`, and `handoff-spec` when their descriptions apply.
+Read `.cstack/PROGRESS.md` and the current `.cstack/PLAN.md` when relevant, then compare with Git and source. Once specs exist, use their root README to locate current work, status, active or waiting slice, next action, and plan/results. Follow existing filenames and child/task tables instead of creating duplicate records. Read relevant feature-map and verification sections. Use `grill-feature`, `run-spec`, `verify-backend`, and `handoff-spec` when their descriptions apply.
 
 ## Project decisions that override global defaults
 
@@ -16,4 +16,4 @@ Read `.cstack/PROGRESS.md` and the current `.cstack/PLAN.md` when relevant, then
 
 ## Working agreement
 
-Use one active bounded spec for substantial tracked work, with observable acceptance criteria and accurate verification evidence. A direct request to implement a defined change authorizes it. Preserve unrelated changes and do not silently begin another spec.
+Use one active bounded spec for substantial tracked work, with observable acceptance criteria and accurate verification evidence. A spec can contain multiple phases/slices, with one implementation slice active at a time. A direct request to implement a defined change authorizes it. Completing a slice does not close the whole spec; continue already authorized slices without inferring authorization for unrequested work. Preserve unique information before archiving documents, and check incoming and outgoing relative links after moving files. Preserve unrelated changes.

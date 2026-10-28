@@ -22,4 +22,4 @@ No application exists yet, so no check is marked passed. Fill in commands after 
 - **Result:** not run.
 - **Detailed evidence:** no spec result yet.
 
-Keep only the current or latest relevant proof summary here. When a spec exists, record date, branch/commit, environment, exact command/action, observed result and side effect, pass/fail/skip, and limitation in its `result.md`; link it above. Do not paste large logs or secrets.
+Keep only the latest relevant proof summary here. When a spec exists, record date, branch/commit, environment, exact command/action, observed result and side effect, pass/fail/skip, and limitation in its existing result report (`result.md` or `PHASE-*-RESULTS.md`); link it above and from the specs-root README. Slice evidence does not establish acceptance of the whole spec. Do not paste large logs or secrets.

@@ -15,6 +15,6 @@ No check has been recorded in this template. This says nothing about existing te
 - **Environment and command:** not recorded here yet.
 - **Observed result and side effect:** not recorded here yet.
 - **Limitations:** not assessed here yet.
-- **Detailed evidence:** link the active spec's `result.md` when one exists.
+- **Detailed evidence:** link the existing result report for the active spec/slice when one exists.
 
-For each new change, run the smallest check that demonstrates changed behavior and relevant side effects. Distinguish inspected pre-existing evidence from checks run during this work. Record exact commands, environments, failures, and skipped checks in `result.md` for tracked work, or concisely here for a focused fix. Never infer a pass from a test file or CI workflow.
+For each new change, run the smallest check that demonstrates changed behavior and relevant side effects. Distinguish inspected pre-existing evidence from checks run during this work. Record exact commands, environments, failures, and skipped checks in the existing result report (`result.md` or `PHASE-*-RESULTS.md`) and link it from the specs-root README, or report concisely here for a focused fix. Slice proof does not establish acceptance of the whole spec. Never infer a pass from a test file or CI workflow.

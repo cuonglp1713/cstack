@@ -1,6 +1,6 @@
 # Progress and next-session handoff
 
-This is a starting index for work tracked after adoption. Its empty state says nothing about features already implemented in the repository.
+This is a starting handoff for work tracked after adoption. Its empty state says nothing about existing features. Once specs are tracked, link to their root README for current work, status, active or waiting slice, next action, and plan/results links; keep details in the spec/phase records.
 
 ## Current state
 
@@ -16,4 +16,4 @@ This is a starting index for work tracked after adoption. Its empty state says n
 | Spec | Outcome | Record |
 |---|---|---|
 
-Add rows only for work tracked from adoption onward and link each actual completed spec folder. Keep exact personal verification and decisions in `result.md` when a spec exists, rather than in this index. Record team-relevant outcomes in shared project artifacts.
+Add rows only for work tracked from adoption onward and link each actual completed spec folder; closing a slice does not close the whole spec. Keep exact verification and decisions in the existing result report (`result.md` or `PHASE-*-RESULTS.md`), rather than in this index. Preserve unique information before shortening or archiving documents; after moving files, check outgoing and incoming relative links. Record team-relevant outcomes in shared project artifacts.

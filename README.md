@@ -1,6 +1,6 @@
 # Coding-agent starter kit
 
-Bộ kit cá nhân này dùng để bắt đầu repo mới hoặc tiếp nhận repo đang phát triển. Template và skill được lưu trong Git của `cstack`; bản tài liệu làm việc ở repo đích nằm trong `.cstack/` và được Git bỏ qua tại máy của bạn. `repo-starter/` là seed cho repo mới; `repo-adopt/` là bộ file trung lập cho repo đã có code.
+Bộ kit cá nhân này dùng để bắt đầu repo mới hoặc tiếp nhận repo đang phát triển. Template và skill được lưu trong Git của `cstack`; tài liệu làm việc cá nhân ở repo đích mặc định nằm trong `.cstack/` và được Git bỏ qua tại máy của bạn. `repo-starter/` là seed cho repo mới; `repo-adopt/` là bộ file trung lập cho repo đã có code.
 
 ## Cấu trúc
 
@@ -17,7 +17,7 @@ cstack/
 └── examples/mysql-project/.cstack/CONTEXT.md
 ```
 
-Hai template **không có sẵn** thư mục `specs/`. Agent chỉ tạo `.cstack/specs/<id>-<slug>/` trong repo đích khi đã xác định một thay đổi cụ thể cần theo dõi. `<slug>` lấy từ tên công việc và quy ước của chính dự án; kit không ấn định một tên feature mẫu.
+Hai template **không có sẵn** thư mục `specs/`. Khi đã xác định một thay đổi cụ thể cần theo dõi, agent tạo hồ sơ và chỉ mục `README.md` tại thư mục specs đang dùng: mặc định là `.cstack/specs/` cho hồ sơ cá nhân, hoặc vị trí sẵn có của dự án như `specs/`. `<slug>` lấy từ tên công việc và quy ước của chính dự án; kit không ấn định một tên feature mẫu.
 
 ## Cài đặt chỉ dẫn và skill cá nhân
 
@@ -81,18 +81,36 @@ Các bản `.cstack/` bị bỏ qua sẽ không theo bạn sang bản clone ho�
 
 ## Quy trình spec
 
-Một **spec** là hồ sơ cho một thay đổi có phạm vi và tiêu chí chấp nhận rõ ràng. Dùng spec cho công việc đáng theo dõi qua nhiều bước hoặc phiên làm việc; sửa lỗi nhỏ có thể làm trực tiếp. Chỉ có một spec đang hoạt động. Một yêu cầu triển khai đã rõ phạm vi cho phép bắt đầu ngay; không cần đợi một nghi thức tạo tài liệu.
+Một **spec** là hồ sơ cho một thay đổi có phạm vi và tiêu chí chấp nhận rõ ràng. Dùng spec cho công việc đáng theo dõi qua nhiều bước hoặc phiên làm việc; sửa lỗi nhỏ có thể làm trực tiếp. Một spec có thể gồm nhiều phase/slice với ID ổn định, kết quả quan sát được và tiêu chí chấp nhận riêng. Giữ một spec và một slice triển khai đang hoạt động tại một thời điểm; các phần tiếp theo có thể ở trạng thái đề xuất hoặc chờ review. Một yêu cầu triển khai đã rõ phạm vi cho phép bắt đầu ngay; không cần đợi một nghi thức tạo tài liệu. Hoàn tất một slice không tự đóng cả spec. Tiếp tục các slice đã được giao; không suy ra quyền làm phần việc chưa được giao chỉ từ một slice đã xong.
 
-Khi cần hồ sơ, agent tạo `.cstack/specs/<id>-<slug>/` theo hướng dẫn trong `global/AGENTS.md` và `.cstack/CONTEXT.md`. ID tăng dần như `001`, `002`, trừ khi dự án có quy ước ID sẵn. Tên `<slug>` được chọn từ đầu việc thật của repo đó và có thể theo convention đang dùng. Không tạo `specs/` lúc copy template, không đặt tên trước cho công việc chưa có, và không gán spec hồi tố cho toàn bộ feature đã tồn tại.
+Khi cần hồ sơ mới, agent dùng vị trí và cách đặt tên sẵn có của dự án; nếu chưa có thì dùng `.cstack/specs/<id>-<slug>/` theo `global/AGENTS.md` và `.cstack/CONTEXT.md`. ID tăng dần như `001`, `002`, trừ khi dự án có quy ước ID sẵn. Tên `<slug>` được chọn từ đầu việc thật của repo đó. Ghi quy ước đã chọn vào `.cstack/CONTEXT.md` khi có; không tạo hồ sơ song song chỉ vì cài kit. Không tạo `specs/` lúc copy template, không đặt tên trước cho công việc chưa có, và không gán spec hồi tố cho toàn bộ feature đã tồn tại.
 
-| File trong spec | Nội dung |
+| Vai trò | Tên mặc định khi chưa có quy ước | Cách tổ chức tương đương trong dự án |
+|---|---|---|
+| Kết quả người dùng cần, phạm vi, quyết định, tiêu chí chấp nhận; baseline và phần việc còn lại khi tiếp nhận code có sẵn | `spec.md` | `README.md` của spec |
+| Cách triển khai, rủi ro, cách kiểm chứng | `plan.md` | `PHASE-*-PLAN.md` theo từng phase |
+| Các bước thực hiện và trạng thái, với ID cục bộ như `T01` hoặc child ID khi hữu ích | `tasks.md` nếu cần tách riêng | Bảng child/task trong plan của phase |
+| Hành vi đã triển khai, code/commit, lệnh và môi trường kiểm chứng, kết quả quan sát, giới hạn và việc còn lại | `result.md` | `PHASE-*-RESULTS.md` theo từng phase |
+
+Các tên mặc định mô tả vai trò tài liệu, không bắt buộc đổi tên file đã có. Chỉ tạo file khi thông tin tương ứng đã có; dùng bảng child/task sẵn có thay vì thêm `tasks.md` trùng nội dung. Nếu tách plan/results theo phase, spec liên kết đến chúng và giữ tiêu chí chấp nhận tổng thể. Khi hoàn tất, giữ hồ sơ đó như lịch sử. Thay đổi sau khi đóng spec có spec mới và liên kết về spec cũ.
+
+### Chỉ mục công việc trong specs
+
+`README.md` tại thư mục specs là điểm vào ngắn để tìm công việc hiện tại: `.cstack/specs/README.md` theo mặc định, hoặc `specs/README.md` khi dự án dùng vị trí đó. Tạo cùng hồ sơ thật đầu tiên và cập nhật khi công việc, trạng thái hoặc bước tiếp theo thay đổi; khi tiếp nhận specs đã có, chỉ lập chỉ mục các hồ sơ liên quan, không dựng lại toàn bộ lịch sử.
+
+Chỉ mục gồm các thông tin sau, với link tới file thực tế:
+
+| Mục | Nội dung |
 |---|---|
-| `spec.md` | Kết quả người dùng cần, phạm vi, quyết định, tiêu chí chấp nhận. Với repo đã có code, ghi baseline liên quan và phần việc còn lại. |
-| `plan.md` | Cách triển khai, rủi ro, cách kiểm chứng. |
-| `tasks.md` | Các bước thực hiện và trạng thái; dùng ID cục bộ như `T01` khi hữu ích. |
-| `result.md` | Hành vi đã triển khai, code/commit, lệnh và môi trường kiểm chứng, kết quả quan sát, giới hạn và việc còn lại. |
+| Công việc hiện tại | Tên/ID spec và link tới hồ sơ phạm vi, tiêu chí chấp nhận |
+| Trạng thái | Đề xuất, đang triển khai, chờ review, bị chặn hoặc đã đóng; ghi đúng trạng thái quan sát được |
+| Slice hiện tại hoặc đang chờ | ID phase/child và trạng thái; ghi rõ khi không có slice triển khai active |
+| Bước tiếp theo | Một hành động cụ thể và ai cần thực hiện nếu đang chờ |
+| Plan / results | Link tới plan và báo cáo mới nhất của phần việc liên quan; chưa có kết quả thì ghi chưa có |
 
-Tạo các file trên khi thông tin tương ứng đã có; không điền nội dung giả định chỉ để đủ bộ. Khi hoàn tất, giữ hồ sơ đó như lịch sử. Thay đổi sau này có spec mới và liên kết về spec cũ. `.cstack/PLAN.md` trỏ tới công việc đang làm; `PROGRESS.md` có chỉ mục spec đã hoàn tất; `VERIFY.md` liên kết bằng chứng mới nhất trong `result.md`. Chúng không chép lại toàn bộ hồ sơ.
+Giữ chỉ mục ngắn; chi tiết thiết kế, quyết định và bằng chứng nằm trong hồ sơ tương ứng. `.cstack/PLAN.md` trỏ tới chỉ mục và plan hiện tại; `PROGRESS.md` giữ handoff ngắn cùng chỉ mục spec đã hoàn tất; `VERIFY.md` liên kết báo cáo có bằng chứng mới nhất. Dùng link để tránh chép trạng thái và lịch sử sang nhiều nơi. `README.md` bên trong từng spec giữ phạm vi và đường dẫn đến các phase, không tích lũy toàn bộ nhật ký triển khai.
+
+Trước khi rút ngắn hoặc lưu trữ tài liệu, giữ lại các quyết định, kết quả và giới hạn duy nhất trong hồ sơ thích hợp. Khi di chuyển file, kiểm tra cả link tương đối trong file đã chuyển và các link từ tài liệu khác trỏ tới nó, gồm plan/results và artifact bằng chứng.
 
 ## Bắt đầu làm việc trong repo mới
 
@@ -102,7 +120,7 @@ Mở agent tại root repo sau khi cài chỉ dẫn cá nhân. Global `AGENTS.md
 
 Khi spec đã đủ rõ để triển khai:
 
-> Hãy triển khai spec đang hoạt động theo `.cstack/PLAN.md`, kiểm chứng hành vi, cập nhật `result.md` cùng `.cstack/PROGRESS.md` và `.cstack/VERIFY.md`. Nếu luồng người dùng/API thay đổi, cập nhật `.cstack/FEATURE_MAP.md`.
+> Hãy triển khai slice đã được giao của spec hiện tại theo `.cstack/PLAN.md` và chỉ mục specs, kiểm chứng hành vi, cập nhật báo cáo kết quả theo tên file dự án đang dùng cùng chỉ mục và handoff liên quan. Nếu luồng người dùng/API thay đổi, cập nhật `.cstack/FEATURE_MAP.md`.
 
 Các prompt mẫu không cần nhắc tên skill: Codex có thể chọn skill phù hợp từ mô tả và chỉ dẫn đã nạp. Nếu muốn chỉ định workflow, thêm `$grill-feature`, `$run-spec`, `$verify-backend` hoặc `$handoff-spec` vào prompt. Đây là cách chọn hướng dẫn trong `SKILL.md`, không phải lệnh terminal hay MCP tool. Nếu vừa cài skill mà nó chưa hiện, mở session Codex mới.
 
@@ -138,11 +156,12 @@ Các file `.cstack/` ở repo đích là tài liệu làm việc cá nhân bị 
 |---|---|
 | `global/AGENTS.md` | Mặc định dùng chung thay đổi. |
 | `.cstack/CONTEXT.md` | Bối cảnh và quyết định cá nhân đã xác nhận thay đổi. |
-| `.cstack/PLAN.md` | Spec đang làm, phạm vi ngắn và bước tiếp theo thay đổi. |
+| `.cstack/PLAN.md` | Con trỏ tới chỉ mục specs và plan của spec/slice hiện tại thay đổi. |
 | `.cstack/PROGRESS.md` | Trạng thái, blocker, bước tiếp theo hoặc chỉ mục spec đã xong thay đổi. |
-| `.cstack/VERIFY.md` | Lệnh dùng lại hoặc kết quả gần nhất thay đổi; liên kết `result.md` cho bằng chứng chi tiết. |
+| `.cstack/VERIFY.md` | Lệnh dùng lại hoặc kết quả gần nhất thay đổi; liên kết báo cáo kết quả cho bằng chứng chi tiết. |
 | `.cstack/FEATURE_MAP.md` | Hành trình sản phẩm, trạng thái, đường vào hoặc cách kiểm chứng thay đổi. |
-| `.cstack/specs/<id>-<slug>/` | Tạo theo nhu cầu cho thay đổi thật; cập nhật `spec.md`, `plan.md`, `tasks.md`, `result.md` trong quá trình làm. |
+| Chỉ mục `README.md` tại thư mục specs | Công việc hiện tại, trạng thái, slice đang làm/chờ, bước tiếp theo hoặc link plan/results thay đổi. |
+| Hồ sơ từng spec | Tạo theo nhu cầu cho thay đổi thật; giữ vai trò scope/plan/tasks/results theo tên file đang dùng, có thể chia theo phase. |
 | `.cstack/docs/features/` | Chi tiết hành trình dài hơn mức phù hợp cho chỉ mục feature. |
 | `.cstack/docs/adr/` | Ghi chú cá nhân về quyết định kiến trúc lâu dài hoặc quyết định cũ bị thay thế. |
 | `SKILL.md` | Workflow lặp lại cần thay đổi. |
