@@ -1,6 +1,6 @@
 # Personal project context — MySQL example
 
-The global `~/.codex/AGENTS.md` points Codex to this private file; Codex does not load it automatically from the repository root. These confirmed project choices replace conflicting personal defaults. Keep `PLAN.md`, `PROGRESS.md`, `VERIFY.md`, and `FEATURE_MAP.md` inside `.cstack/`. Create a spec record there only when a real change is scoped.
+The installed global instructions (`~/.codex/AGENTS.md` for Codex or `~/.claude/CLAUDE.md` for Claude Code) tell the agent to read this private file when present. It is not automatically loaded as an instruction file from the repository root. Both agents share these project records. These confirmed project choices replace conflicting personal defaults. Keep `PLAN.md`, `PROGRESS.md`, `VERIFY.md`, and `FEATURE_MAP.md` inside `.cstack/`. Create a spec record there only when a real change is scoped.
 
 ## Session entry
 

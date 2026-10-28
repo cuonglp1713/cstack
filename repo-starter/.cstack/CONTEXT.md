@@ -1,6 +1,6 @@
 # Personal project context
 
-This private template starts with a new repository and no product or implementation decisions. The user's request, repository `AGENTS.md`, and established contracts take precedence over personal defaults. The global `~/.codex/AGENTS.md` points the agent here; Codex does not load this file automatically from the repository root.
+This private template starts with a new repository and no product or implementation decisions. The user's request, repository instructions such as `AGENTS.md` or `CLAUDE.md`, and established contracts take precedence over personal defaults. The installed global instructions (`~/.codex/AGENTS.md` for Codex or `~/.claude/CLAUDE.md` for Claude Code) tell the agent to read this file when present. It is not automatically loaded as an instruction file from the repository root. Both agents use the same project records here.
 
 ## Session entry
 

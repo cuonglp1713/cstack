@@ -1,13 +1,14 @@
 # Coding-agent starter kit
 
-Bộ kit cá nhân này dùng để bắt đầu repo mới hoặc tiếp nhận repo đang phát triển. Template và skill được lưu trong Git của `cstack`; tài liệu làm việc cá nhân ở repo đích mặc định nằm trong `.cstack/` và được Git bỏ qua tại máy của bạn. `repo-starter/` là seed cho repo mới; `repo-adopt/` là bộ file trung lập cho repo đã có code.
+Bộ kit cá nhân này dùng với **Codex và Claude Code** để bắt đầu repo mới hoặc tiếp nhận repo đang phát triển. Template và skill được lưu trong Git của `cstack`; tài liệu làm việc cá nhân ở repo đích mặc định nằm trong `.cstack/` và được Git bỏ qua tại máy của bạn. `repo-starter/` là seed cho repo mới; `repo-adopt/` là bộ file trung lập cho repo đã có code.
 
 ## Cấu trúc
 
 ```text
 cstack/
-├── global/AGENTS.md                 Mặc định áp dụng trên nhiều repo
-├── skills/*/SKILL.md                Bốn workflow dùng lại
+├── global/AGENTS.md                 Mặc định cá nhân cho Codex
+├── global/CLAUDE.md                 Mặc định cá nhân cho Claude Code
+├── skills/*/SKILL.md                Bốn workflow dùng chung cho hai agent
 ├── repo-starter/
 │   ├── .cstack/{CONTEXT,PLAN,PROGRESS,VERIFY,FEATURE_MAP}.md
 │   ├── .cstack/docs/{features,adr}/
@@ -21,7 +22,9 @@ Hai template **không có sẵn** thư mục `specs/`. Khi đã xác định m�
 
 ## Cài đặt chỉ dẫn và skill cá nhân
 
-Đặt `global/AGENTS.md` trong Codex home và các skill trong thư mục skill cá nhân. Chỉ đặt một bản của mỗi skill để tránh trùng tên. Nếu file đích đã có nội dung, so sánh và gộp thay vì ghi đè.
+Chọn hướng dẫn theo agent bạn dùng; có thể cài cả hai. Hai file global có cùng quy ước làm việc, còn bốn skill dùng chung một bộ source trong `skills/`. Chỉ đặt một bản của mỗi skill trong các vị trí mà từng agent tìm đọc. Nếu file đích đã có nội dung, so sánh và gộp thay vì ghi đè; các lệnh `cp --update=none` dưới đây bỏ qua file đã tồn tại.
+
+### Codex
 
 ```bash
 KIT=/path/to/cstack
@@ -31,6 +34,21 @@ cp -a --update=none "$KIT/skills/." "$HOME/.agents/skills/"
 ```
 
 Codex tự nạp `~/.codex/AGENTS.md` và `AGENTS.md` trên đường từ repo root tới thư mục làm việc. Khi mở agent ở repo root, nó **không** tự nạp `.cstack/CONTEXT.md` nằm bên dưới; global `AGENTS.md` của kit chỉ agent đọc file đó khi có. Giữ `AGENTS.md` đã được repo theo dõi bằng Git; nó vẫn là chỉ dẫn của dự án. Xem [OpenAI Docs về AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md).
+
+### Claude Code
+
+```bash
+KIT=/path/to/cstack
+mkdir -p "$HOME/.claude/skills"
+cp --update=none "$KIT/global/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+cp -a --update=none "$KIT/skills/." "$HOME/.claude/skills/"
+```
+
+Claude Code nạp chỉ dẫn cá nhân từ `~/.claude/CLAUDE.md` và chỉ dẫn dự án từ `CLAUDE.md` hoặc `.claude/CLAUDE.md`. Bản global của kit hướng dẫn đọc `.cstack/CONTEXT.md` khi có; file context này không tự được nạp như `CLAUDE.md`. `global/CLAUDE.md` chứa đủ các mặc định, không phụ thuộc bản cài Codex. Xem [Claude Code memory](https://code.claude.com/docs/en/memory).
+
+Bốn skill được cài vào `~/.claude/skills/` để dùng trong các dự án trên máy. Có thể gọi trực tiếp `/grill-feature`, `/run-spec`, `/verify-backend`, `/handoff-spec`, hoặc để agent chọn từ mô tả. Xem [Claude Code skills](https://code.claude.com/docs/en/skills).
+
+Giữ `CLAUDE.md` và `AGENTS.md` sẵn có của repo; chúng là chỉ dẫn dự án. Hai agent dùng chung tài liệu `.cstack/` trong repo đích, không cần bộ spec hay lịch sử riêng cho từng agent. Khi đổi quy ước dùng chung, cập nhật các mục Working style, Preferred stack và Boundaries ở cả hai file global cho nhất quán.
 
 ## Cài tài liệu cá nhân vào repo đích
 
@@ -83,7 +101,7 @@ Các bản `.cstack/` bị bỏ qua sẽ không theo bạn sang bản clone ho�
 
 Một **spec** là hồ sơ cho một thay đổi có phạm vi và tiêu chí chấp nhận rõ ràng. Dùng spec cho công việc đáng theo dõi qua nhiều bước hoặc phiên làm việc; sửa lỗi nhỏ có thể làm trực tiếp. Một spec có thể gồm nhiều phase/slice với ID ổn định, kết quả quan sát được và tiêu chí chấp nhận riêng. Giữ một spec và một slice triển khai đang hoạt động tại một thời điểm; các phần tiếp theo có thể ở trạng thái đề xuất hoặc chờ review. Một yêu cầu triển khai đã rõ phạm vi cho phép bắt đầu ngay; không cần đợi một nghi thức tạo tài liệu. Hoàn tất một slice không tự đóng cả spec. Tiếp tục các slice đã được giao; không suy ra quyền làm phần việc chưa được giao chỉ từ một slice đã xong.
 
-Khi cần hồ sơ mới, agent dùng vị trí và cách đặt tên sẵn có của dự án; nếu chưa có thì dùng `.cstack/specs/<id>-<slug>/` theo `global/AGENTS.md` và `.cstack/CONTEXT.md`. ID tăng dần như `001`, `002`, trừ khi dự án có quy ước ID sẵn. Tên `<slug>` được chọn từ đầu việc thật của repo đó. Ghi quy ước đã chọn vào `.cstack/CONTEXT.md` khi có; không tạo hồ sơ song song chỉ vì cài kit. Không tạo `specs/` lúc copy template, không đặt tên trước cho công việc chưa có, và không gán spec hồi tố cho toàn bộ feature đã tồn tại.
+Khi cần hồ sơ mới, agent dùng vị trí và cách đặt tên sẵn có của dự án; nếu chưa có thì dùng `.cstack/specs/<id>-<slug>/` theo chỉ dẫn global của agent và `.cstack/CONTEXT.md`. ID tăng dần như `001`, `002`, trừ khi dự án có quy ước ID sẵn. Tên `<slug>` được chọn từ đầu việc thật của repo đó. Ghi quy ước đã chọn vào `.cstack/CONTEXT.md` khi có; không tạo hồ sơ song song chỉ vì cài kit. Không tạo `specs/` lúc copy template, không đặt tên trước cho công việc chưa có, và không gán spec hồi tố cho toàn bộ feature đã tồn tại.
 
 | Vai trò | Tên mặc định khi chưa có quy ước | Cách tổ chức tương đương trong dự án |
 |---|---|---|
@@ -114,7 +132,7 @@ Trước khi rút ngắn hoặc lưu trữ tài liệu, giữ lại các quyết
 
 ## Bắt đầu làm việc trong repo mới
 
-Mở agent tại root repo sau khi cài chỉ dẫn cá nhân. Global `AGENTS.md` chỉ agent tìm `.cstack/CONTEXT.md`; các living doc được đọc theo nhu cầu tác vụ.
+Mở Codex hoặc Claude Code tại root repo sau khi cài chỉ dẫn cá nhân. File global tương ứng chỉ agent tìm `.cstack/CONTEXT.md`; các living doc được đọc theo nhu cầu tác vụ.
 
 > Đây là repo mới. Ý tưởng là ... cho người dùng ... Hãy làm rõ các quyết định quan trọng và xác định thay đổi đầu tiên với tiêu chí chấp nhận quan sát được. Khi phạm vi đã rõ, lập spec cho thay đổi đó và cập nhật `.cstack/PLAN.md`.
 
@@ -122,7 +140,14 @@ Khi spec đã đủ rõ để triển khai:
 
 > Hãy triển khai slice đã được giao của spec hiện tại theo `.cstack/PLAN.md` và chỉ mục specs, kiểm chứng hành vi, cập nhật báo cáo kết quả theo tên file dự án đang dùng cùng chỉ mục và handoff liên quan. Nếu luồng người dùng/API thay đổi, cập nhật `.cstack/FEATURE_MAP.md`.
 
-Các prompt mẫu không cần nhắc tên skill: Codex có thể chọn skill phù hợp từ mô tả và chỉ dẫn đã nạp. Nếu muốn chỉ định workflow, thêm `$grill-feature`, `$run-spec`, `$verify-backend` hoặc `$handoff-spec` vào prompt. Đây là cách chọn hướng dẫn trong `SKILL.md`, không phải lệnh terminal hay MCP tool. Nếu vừa cài skill mà nó chưa hiện, mở session Codex mới.
+Các prompt mẫu không cần nhắc tên skill: agent có thể chọn workflow phù hợp từ mô tả và chỉ dẫn đã nạp. Nếu muốn chỉ định, dùng cú pháp theo agent:
+
+| Agent | Cách gọi skill |
+|---|---|
+| Codex | `$grill-feature`, `$run-spec`, `$verify-backend`, `$handoff-spec` |
+| Claude Code | `/grill-feature`, `/run-spec`, `/verify-backend`, `/handoff-spec` |
+
+Đây là cách chọn hướng dẫn trong `SKILL.md`, không phải lệnh terminal hay MCP tool. Nếu vừa cài skill mà nó chưa hiện, mở session mới của agent đang dùng.
 
 ## Tiếp tục làm việc trong repo đã có code
 
@@ -134,7 +159,7 @@ Nếu kit được dùng giữa chừng một feature, `.cstack/PLAN.md` ghi ph�
 
 ## Ghi đè theo repo
 
-Mặc định trong `global/AGENTS.md` chỉ áp dụng khi repo chưa chọn khác. Ghi chú cá nhân về quyết định đã xác nhận nằm trong `.cstack/CONTEXT.md`; quyết định cần chia sẻ với nhóm thuộc tài liệu dự án. Ví dụ phần ghi chú cá nhân:
+Mặc định trong `global/AGENTS.md` hoặc `global/CLAUDE.md` chỉ áp dụng khi repo chưa chọn khác. Ghi chú cá nhân về quyết định đã xác nhận nằm trong `.cstack/CONTEXT.md`; quyết định cần chia sẻ với nhóm thuộc tài liệu dự án. Ví dụ phần ghi chú cá nhân:
 
 ```markdown
 ## Project decisions that override global defaults
@@ -146,7 +171,7 @@ Mặc định trong `global/AGENTS.md` chỉ áp dụng khi repo chưa chọn kh
 
 Xem [ví dụ MySQL](examples/mysql-project/.cstack/CONTEXT.md) cho một repo mới. Với repo có sẵn, quyết định, lệnh và layout đang dùng được ưu tiên; không tạo `backend/`, `frontend/` hoặc `docker/` chỉ để khớp starter. Nếu một skill có giả định không hợp với repo, chỉnh bản skill cá nhân hoặc tạo skill khác tên. Bốn skill trong bộ này không khóa loại database.
 
-`AGENTS.md` có sẵn ở repo đích tiếp tục là chỉ dẫn của dự án. Không thay nó bằng ghi chú cá nhân.
+`AGENTS.md` và `CLAUDE.md` có sẵn ở repo đích tiếp tục là chỉ dẫn của dự án. Không thay chúng bằng ghi chú cá nhân.
 
 ## Vòng đời tài liệu
 
@@ -154,7 +179,7 @@ Các file `.cstack/` ở repo đích là tài liệu làm việc cá nhân bị 
 
 | File | Cập nhật khi |
 |---|---|
-| `global/AGENTS.md` | Mặc định dùng chung thay đổi. |
+| `global/AGENTS.md`, `global/CLAUDE.md` | Mặc định dùng chung thay đổi; giữ các quy ước tương ứng nhất quán giữa hai agent. |
 | `.cstack/CONTEXT.md` | Bối cảnh và quyết định cá nhân đã xác nhận thay đổi. |
 | `.cstack/PLAN.md` | Con trỏ tới chỉ mục specs và plan của spec/slice hiện tại thay đổi. |
 | `.cstack/PROGRESS.md` | Trạng thái, blocker, bước tiếp theo hoặc chỉ mục spec đã xong thay đổi. |
