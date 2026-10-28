@@ -2,6 +2,8 @@
 
 This map belongs to this repository and describes its user journeys. Draft planned journeys from agreed product goals and discover implemented paths from code, routes, UI, and tests. Validate the actual path and observable result before marking it verified; do not invent screens, routes, selectors, or commands.
 
+Track product capabilities and entry points here. Phase/task status and next action belong in PROGRESS.md; reusable commands and latest verification results belong in VERIFY.md. Link to those records when relevant.
+
 | User journey | Status | Entry point and action | Owning code | Observable proof | Spec record or detail |
 |---|---|---|---|---|---|
 

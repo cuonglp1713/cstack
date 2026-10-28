@@ -1,14 +1,15 @@
 # Current plan
 
-This private starter has no active spec. Clarify the first bounded change from the user's idea, then create its spec record when there is real work to track. Do not create an empty `specs/` folder or guess its name.
+This file holds the intended change and approach. Current execution state, active or waiting phase/slice, blockers, and next action belong in PROGRESS.md. Clarify the first bounded change before creating a spec record; do not create an empty specs folder or guess its name.
 
-## Current work
+## Planned change
 
-- **Spec:** none yet.
-- **Slice:** none defined yet.
-- **Status:** awaiting the first defined change.
-- **User outcome:** not decided yet.
-- **Next action:** identify the target user, first observable behavior, boundaries, and acceptance criteria with the user.
-- **Open decisions:** data, failure behavior, and verification depend on the product idea.
+- **Spec or focused task:** none defined yet.
+- **User outcome and acceptance:** not decided yet.
+- **In/out scope:** not decided yet.
+- **Approach and phase/slice dependencies:** not defined yet.
+- **Risks and open decisions:** depend on the product idea.
+- **Verification plan:** define observable proof and a suitable environment; link reusable commands from VERIFY.md when known.
+- **Detailed scope and plan:** no spec or phase plan yet.
 
-When a change is defined, create or update the short README at the chosen specs root (`.cstack/specs/README.md` by default) with current work, status, active or waiting slice, next action, and actual plan/results links. Point here to that index and the relevant plan rather than duplicating history. Follow existing filenames; detailed steps can stay in a child/task table without a separate `tasks.md`. A direct request to implement a defined change authorizes it; continue already authorized slices without treating completion as authorization for unrequested work. Before replacing pointers, preserve evidence in the existing result report and link completed specs from `.cstack/PROGRESS.md`.
+Update this plan when intended scope, acceptance, approach, dependencies, risks, or verification changes. Keep it concise and link long detail in the actual spec/phase plan; existing child/task tables suffice without a separate tasks.md. Record execution changes and completed-spec links in PROGRESS.md, and observed proof in VERIFY.md with links to result reports. A direct request for a defined change authorizes it; continue already authorized slices. Preserve unique decisions and evidence before replacing a plan.

@@ -4,7 +4,7 @@ The installed global instructions (`~/.codex/AGENTS.md` for Codex or `~/.claude/
 
 ## Session entry
 
-Read `.cstack/PROGRESS.md` and the current `.cstack/PLAN.md` when relevant, then compare with Git and source. Once specs exist, use their root README to locate current work, status, active or waiting slice, next action, and plan/results. Follow existing filenames and child/task tables instead of creating duplicate records. Read relevant feature-map and verification sections. Use `grill-feature`, `run-spec`, `verify-backend`, and `handoff-spec` when their descriptions apply.
+Read `.cstack/PROGRESS.md` for current work, active or waiting phase/slice, execution status, blockers, next action, and plan/results links. Read `.cstack/PLAN.md` for intended scope, acceptance, approach, dependencies, and verification plan; compare both with Git and source. Follow existing spec filenames and child/task tables instead of creating duplicate records. CONTEXT holds stable decisions, FEATURE_MAP maps product journeys, and VERIFY holds reusable commands and observed proof. Use `grill-feature`, `run-spec`, `verify-backend`, and `handoff-spec` when their descriptions apply.
 
 ## Project decisions that override global defaults
 

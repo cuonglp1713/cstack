@@ -2,6 +2,8 @@
 
 This is a partial index of user journeys discovered while working in an existing repository. It does not claim to cover every feature. Add or update the relevant journey for the current task; do not inventory unrelated areas as a prerequisite.
 
+Track product capabilities and entry points here. Phase/task status and next action belong in PROGRESS.md; reusable commands and latest verification results belong in VERIFY.md. Link to those records when relevant.
+
 | User journey | Delivery | Verification evidence | Entry point and action | Owning code | Spec record or detail |
 |---|---|---|---|---|---|
 

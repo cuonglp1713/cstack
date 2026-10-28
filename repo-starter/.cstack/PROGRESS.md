@@ -1,14 +1,16 @@
 # Progress and next-session handoff
 
-Keep this page short. Once specs exist, link to their root README for current work, status, active or waiting slice, next action, and plan/results links. Detailed steps, implementation, and evidence stay in the spec/phase records.
+Keep the current execution snapshot here: work, status, active or waiting phase/slice, last completed work, blockers, and next action. PLAN.md holds intended work and approach; VERIFY.md holds observed proof. Link detailed spec/phase records instead of appending an event log.
 
 ## Current state
 
 - **Active spec:** none yet.
+- **Active or waiting phase/slice:** none defined yet.
 - **Status:** no product work has been defined in this starter.
-- **Last observed result:** none; this template is not verification evidence.
+- **Last completed work:** none; this template is not verification evidence.
 - **Next action:** take the user's idea, define a bounded change, and update `.cstack/PLAN.md`.
 - **Known blockers:** none recorded; requirements are still unknown.
+- **Plan/results:** no spec or phase records yet; see PLAN.md for planning and VERIFY.md for proof.
 
 ## Completed specs
 
